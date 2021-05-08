@@ -2,7 +2,7 @@ logging:
   level:
     ROOT: INFO
     org.springframework.web: TRACE
-    com.sapient.league: DEBUG
+    com.sapient.standing: DEBUG
 
 eureka:
   instance:

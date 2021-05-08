@@ -1,0 +1,37 @@
+# app name & active profile
+spring:
+  profiles:
+    active: native
+  application:
+    name: naming-server
+  cloud:
+    config:
+      profile: native
+      server:
+        bootstrap: true
+        native:
+          search-locations: classpath:/config
+        
+# port & context path   
+server:
+  port: 8888
+    
+# eureka client config
+eureka:
+  instance:
+      hostname: localhost
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+    
+# k8s actuator probe
+management:
+  endpoint:
+    health:
+      probes:
+        enabled: true
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true

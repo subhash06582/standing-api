@@ -1,0 +1,12 @@
+logging:
+  level:
+    ROOT: INFO
+    org.springframework.web: TRACE
+    com.sapient.namingserver: DEBUG
+
+eureka:
+  instance:
+      hostname: localhost
+  client:
+    register-with-eureka: false
+    fetch-registry: false

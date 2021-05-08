@@ -1,0 +1,26 @@
+# app name & active profile
+spring:
+  profiles:
+    active: dev
+  application:
+    name: standing-service
+  config:
+    import: optional:configserver:http://localhost:8888
+    
+# port & context path   
+server:
+  port: 8803
+  servlet:
+    context-path: /api
+
+# k8s actuator probe
+management:
+  endpoint:
+    health:
+      probes:
+        enabled: true
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true

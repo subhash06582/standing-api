@@ -12,6 +12,6 @@ import com.sapient.position.model.Standing;
 public interface StandingServiceProxy {
 
 	@GetMapping("/api/standings")
-	public List<Standing> getStandings(@RequestParam("league") long leagueId) throws Exception;
+	public List<Standing> getStandings(@RequestParam("leagueId") long leagueId) throws Exception;
 
 }

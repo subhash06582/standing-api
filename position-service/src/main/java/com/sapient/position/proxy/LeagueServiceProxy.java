@@ -12,6 +12,6 @@ import com.sapient.position.model.League;
 public interface LeagueServiceProxy {
 
 	@GetMapping("/api/leagues")
-	public List<League> getLeagues(@RequestParam("country") long countryId) throws Exception;
+	public List<League> getLeagues(@RequestParam("countryId") long countryId) throws Exception;
 
 }

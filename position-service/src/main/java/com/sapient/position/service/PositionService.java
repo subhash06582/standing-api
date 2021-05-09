@@ -32,7 +32,7 @@ public class PositionService {
 
 	private Logger logger = LoggerFactory.getLogger(PositionService.class);
 
-	public LeaguePosition getStandings(LeaguePositionFilter filter) throws Exception {
+	public LeaguePosition getPosition(LeaguePositionFilter filter) throws Exception {
 		Country country = getCountry(filter);
 		League league = getLeague(filter, country);
 		Standing standing = getStanding(filter, league);
@@ -96,9 +96,9 @@ public class PositionService {
 
 	private LeaguePosition populateLeagueStanding(Country country, Standing standing) {
 		LeaguePosition position = new LeaguePosition();
-		position.setCountryIdAndName(country.getCountryId() + PositionConstants.HIGHPHEN + country.getCountryName());
-		position.setLeagueIdAndName(standing.getLeagueId() + PositionConstants.HIGHPHEN + standing.getLeagueName());
-		position.setTeamIdAndName(standing.getTeamId() + PositionConstants.HIGHPHEN + standing.getTeamName());
+		position.setCountryIdAndName(country.getCountryId() + PositionConstants.HYPHEN + country.getCountryName());
+		position.setLeagueIdAndName(standing.getLeagueId() + PositionConstants.HYPHEN + standing.getLeagueName());
+		position.setTeamIdAndName(standing.getTeamId() + PositionConstants.HYPHEN + standing.getTeamName());
 		position.setOverallLeaguePosition(standing.getOverallLeaguePosition());
 		if (logger.isDebugEnabled()) {
 			logger.debug("populateLeagueStanding :: {}", position);

@@ -25,7 +25,7 @@ public class PositionController {
 		if (logger.isDebugEnabled()) {
 			logger.debug("getPosition :: {}", filter);
 		}
-		return service.getStandings(filter);
+		return service.getPosition(filter);
 	}
 
 }

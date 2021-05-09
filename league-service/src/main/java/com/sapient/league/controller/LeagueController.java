@@ -18,7 +18,7 @@ public class LeagueController {
 	private LeagueService service;
 
 	@GetMapping("/leagues")
-	public List<League> getLeagues(@RequestParam("country") long countryId) throws Exception {
+	public List<League> getLeagues(@RequestParam("countryId") long countryId) throws Exception {
 		return service.getLeagues(countryId);
 	}
 

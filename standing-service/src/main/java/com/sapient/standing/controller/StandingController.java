@@ -17,7 +17,7 @@ public class StandingController {
 	private StandingService service;
 
 	@GetMapping("/standings")
-	public List<Standing> getStandings(@RequestParam("league") long leagueId) throws Exception {
+	public List<Standing> getStandings(@RequestParam("leagueId") long leagueId) throws Exception {
 		return service.getStanding(leagueId);
 	}
 

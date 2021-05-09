@@ -66,7 +66,7 @@ How to Run App on LOCAL using DOKCER
 | Standing Service | http://localhost:8803/api/actuator/health/liveness| http://localhost:8803/api/actuator/health/readiness |
 | Position Service | http://localhost:8080/api/actuator/health/liveness| http://localhost:8080/api/actuator/health/readiness |
 | Config Server | http://localhost:8888/actuator/health/liveness| http://localhost:8888/actuator/health/readiness |
-| Naming Server | http://localhost:8761/actuator/health/readiness| http://localhost:8761/actuator/health/readiness |
+| Naming Server | http://localhost:8761/actuator/health/liveness| http://localhost:8761/actuator/health/readiness |
 
 ## More additions that could be done to the app
 - Implementing Spring Cloud Gateway to provide a simple, yet effective way to route to APIs and provide cross cutting concerns to them such as: security, monitoring/metrics, and resiliency.

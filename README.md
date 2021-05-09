@@ -45,3 +45,13 @@ How to Run App on LOCAL using DOKCER
 | Spring cloud config Server | 8888 |
 | Position Service API | 8080 |
 
+## URLs
+
+|     Application       |     URL          |
+| ------------- | ------------- |
+| Country Service - Indirect call from Position API| http://localhost:8801/api/countries/ |
+| League Service - Indirect call from Position API| http://localhost:8802/api/leagues?countryId=41|
+| Standing Service - Indirect call from Position API| http://localhost:8803/api/standings?leagueId=149|
+| Position API Server - Direct call | http://localhost:8080/api/position?country=France&league=Ligue%202&team=Grenoble|
+| Config Server | http://localhost:8888/|
+| Eureka Naming Server | http://localhost:8761/|

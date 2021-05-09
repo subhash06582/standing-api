@@ -16,9 +16,9 @@
 ```
 	{
 	    "Country ID & Name: ":"46 - France",
-      "League ID & Name: ":"177 - Ligue 2",
-      "Team ID & Name: ":"3078 - Grenoble",
-      "Overall League Position: ":"4"
+            "League ID & Name: ":"177 - Ligue 2",
+            "Team ID & Name: ":"3078 - Grenoble",
+            "Overall League Position: ":"4"
 	} 
 ```
 
@@ -52,6 +52,10 @@ How to Run App on LOCAL using DOKCER
 | Country Service - Indirect call from Position API| http://localhost:8801/api/countries/ |
 | League Service - Indirect call from Position API| http://localhost:8802/api/leagues?countryId=41|
 | Standing Service - Indirect call from Position API| http://localhost:8803/api/standings?leagueId=149|
-| Position API Server - Direct call | http://localhost:8080/api/position?country=France&league=Ligue%202&team=Grenoble|
-| Config Server | http://localhost:8888/|
+| Position Service API - Direct call | http://localhost:8080/api/position?country=France&league=Ligue%202&team=Grenoble|
+| Spring cloud Config Server | http://localhost:8888/|
 | Eureka Naming Server | http://localhost:8761/|
+
+## More additions that could be done to the app
+- Implementing Spring Cloud Gateway to provide a simple, yet effective way to route to APIs and provide cross cutting concerns to them such as: security, monitoring/metrics, and resiliency.
+- Distributed Tracing with Spring Cloud Sleuth and Spring Cloud Zipkin

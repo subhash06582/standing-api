@@ -8,17 +8,17 @@
 - Application configuration are stored and fetched from Spring Cloud Config server for externalized configuration in a distributed system.
 
 #### Input
-- Country : 'France'
-- League  : 'Ligue 2'
-- Team    : 'Grenoble'
+- Country : 'England'
+- League  : 'Championship'
+- Team    : 'Nottingham'
 
 #### Output
 ```
 	{
-	    "Country ID & Name: ":"46 - France",
-            "League ID & Name: ":"177 - Ligue 2",
-            "Team ID & Name: ":"3078 - Grenoble",
-            "Overall League Position: ":"4"
+	    "Country ID & Name: ": "41 - England",
+            "League ID & Name: ": "149 - Championship",
+            "Team ID & Name: ": "2634 - Nottingham",
+            "Overall League Position: ": "17"
 	} 
 ```
 
@@ -52,7 +52,7 @@ How to Run App on LOCAL using DOKCER
 | Country Service - Indirect call from Position API| http://localhost:8801/api/countries/ |
 | League Service - Indirect call from Position API| http://localhost:8802/api/leagues?countryId=41|
 | Standing Service - Indirect call from Position API| http://localhost:8803/api/standings?leagueId=149|
-| Position Service API - Direct call | http://localhost:8080/api/position?country=France&league=Ligue%202&team=Grenoble|
+| Position Service API - Direct call | http://localhost:8080/api/position?country=England&league=Championship&team=Nottingham|
 | Spring cloud Config Server | http://localhost:8888/position-service/dev|
 | Eureka Naming Server | http://localhost:8761/|
 

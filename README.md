@@ -25,3 +25,12 @@
 ###### 
 The app has been dockerized. Docker images for individual microservices can be found at https://hub.docker.com/repositories/subhash06582
 
+How to Run App on LOCAL using DOKCER
+```
+1) git clone https://github.com/subhash06582/standing-api
+2) cd standing-api
+3) Go to indivudual folders (i.e. /config-server /country-service, /league-service, /naming-server /position-service /standing-service) and RUN './mvn clean install' to build *.jar' file
+3) Return back to main folder (/standing-api)
+4) Run 'docker-compose up' cmd. This will build docker images in a correct order from the docker-compose.yml file present at root.
+```
+

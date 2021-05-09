@@ -2,12 +2,12 @@
 - User can find standings of a team playing league football match using country name, league name and team name. For Eg. country=England , league=Championship and team=Nottingham
 - The app uses https://apifootball.com/documentation/ API to fetch country, league and standing to display them in the response.
 
-# Key Features of the APP
+## Key Features of the APP
 - It uses Declarative REST Client: Feign to call services.
 - Uses Eureka Service Registration and Discovery which enables client-side load-balancing and decouples service providers from consumers without the need for DNS.
 - Application configuration are stored and fetched from Spring Cloud Config server for externalized configuration in a distributed system.
 
-# Architecture Diagram
+## Architecture Diagram
 ![League_Position_Architecture_Diagram](League_Position_Architecture_Diagram.png)
 
 #### Input
@@ -25,10 +25,10 @@
 	} 
 ```
 
-###### 
+###
 The app has been dockerized. Docker images for individual microservices can be found at https://hub.docker.com/repositories/subhash06582
 
-How to Run App on LOCAL using DOKCER
+### How to Run App on LOCAL using DOKCER
 ```
 1) git clone https://github.com/subhash06582/standing-api
 2) cd standing-api
@@ -37,7 +37,7 @@ How to Run App on LOCAL using DOKCER
 4) Run 'docker-compose up' cmd. This will build docker images in a correct order from the docker-compose.yml file present at root.
 ```
 
-## Ports
+### Ports
 
 |     Application       |     Port          |
 | ------------- | ------------- |
@@ -48,7 +48,7 @@ How to Run App on LOCAL using DOKCER
 | Spring cloud config Server | 8888 |
 | Position Service API | 8080 |
 
-## URLs
+### URLs
 
 |     Application       |     URL          |
 | ------------- | ------------- |
@@ -60,7 +60,7 @@ How to Run App on LOCAL using DOKCER
 | Eureka Naming Server | http://localhost:8761/|
 
 
-## Health check Probes
+### Health check Probes
 
 |     Application       |    liveness  Probe          |     readiness  Probe          |
 | ------------- | ------------- | ------------- |
@@ -71,7 +71,7 @@ How to Run App on LOCAL using DOKCER
 | Config Server | http://localhost:8888/actuator/health/liveness| http://localhost:8888/actuator/health/readiness |
 | Naming Server | http://localhost:8761/actuator/health/liveness| http://localhost:8761/actuator/health/readiness |
 
-## More additions that could be done to the app
-- Implementing Spring Cloud Gateway to provide a simple, yet effective way to route to APIs and provide cross cutting concerns to them such as: security, monitoring/metrics, and resiliency.
-- Distributed Tracing with Spring Cloud Sleuth and Spring Cloud Zipkin
-- Implementing, Circuit Breaker, Rate Limiter, Retry using Resilience4j spring-boot API
+### More additions that could be done to the app
+- [ ] Implementing Spring Cloud Gateway to provide a simple, yet effective way to route to APIs and provide cross cutting concerns to them such as: security, monitoring/metrics, and resiliency.
+- [ ] Distributed Tracing with Spring Cloud Sleuth and Spring Cloud Zipkin
+- [ ] Implementing, Circuit Breaker, Rate Limiter, Retry using Resilience4j spring-boot API

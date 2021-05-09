@@ -57,9 +57,9 @@ How to Run App on LOCAL using DOKCER
 | Eureka Naming Server | http://localhost:8761/|
 
 
-## Livenss & Readiness Probes
+## Health check Probes
 
-|     Application       |    livenss  Probe          |     readiness  Probe          |
+|     Application       |    liveness  Probe          |     readiness  Probe          |
 | ------------- | ------------- | ------------- |
 | Country Service | http://localhost:8801/api/actuator/health/liveness | http://localhost:8801/api/actuator/health/readiness |
 | League Service | http://localhost:8802/api/actuator/health/liveness| http://localhost:8802/api/actuator/health/readiness |

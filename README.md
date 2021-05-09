@@ -34,3 +34,14 @@ How to Run App on LOCAL using DOKCER
 4) Run 'docker-compose up' cmd. This will build docker images in a correct order from the docker-compose.yml file present at root.
 ```
 
+## Ports
+
+|     Application       |     Port          |
+| ------------- | ------------- |
+| Country Service | 8801, ...  |
+| League Service | 8802, ... |
+| Standing Service | 8803, ... |
+| Netflix Eureka Naming Server | 8761 |
+| Spring cloud config Server | 8888 |
+| Position Service API | 8080 |
+

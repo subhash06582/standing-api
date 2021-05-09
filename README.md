@@ -56,6 +56,18 @@ How to Run App on LOCAL using DOKCER
 | Spring cloud Config Server | http://localhost:8888/|
 | Eureka Naming Server | http://localhost:8761/|
 
+
+## Livenss & Readiness URLs
+
+|     Application       |    livenss  URL          |     readiness  URL          |
+| ------------- | ------------- |
+| Country Service | http://localhost:8801/api/actuator/health/liveness | http://localhost:8801/api/actuator/health/readiness |
+| League Service | http://localhost:8802/api/actuator/health/liveness| http://localhost:8802/api/actuator/health/readiness |
+| Standing Service | http://localhost:8803/api/actuator/health/liveness| http://localhost:8803/api/actuator/health/readiness |
+| Position Service | http://localhost:8080/api/actuator/health/liveness| http://localhost:8080/api/actuator/health/readiness |
+| Config Server | http://localhost:8888/actuator/health/liveness| http://localhost:8888/actuator/health/readiness |
+| Naming Server | http://localhost:8761/actuator/health/readiness| http://localhost:8761/actuator/health/readiness |
+
 ## More additions that could be done to the app
 - Implementing Spring Cloud Gateway to provide a simple, yet effective way to route to APIs and provide cross cutting concerns to them such as: security, monitoring/metrics, and resiliency.
 - Distributed Tracing with Spring Cloud Sleuth and Spring Cloud Zipkin

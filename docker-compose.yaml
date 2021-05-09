@@ -1,0 +1,119 @@
+version: '3.7'
+
+services:
+  naming-server:
+    container_name: naming-server
+    build:
+      context: ./naming-server
+      dockerfile: Dockerfile
+    image: subhash06582/naming-server
+    ports: 
+    - "8761:8761"
+    environment:
+    - eureka.client.serviceUrl.defaultZone=http://naming-server:8761/eureka/
+    - spring.config.import=optional:configserver:http://config-server:8888
+    networks:
+    - position-network
+    
+  
+  config-server:
+    container_name: config-server
+    build:
+      context: ./config-server
+      dockerfile: Dockerfile
+    image: subhash06582/config-server
+    ports: 
+    - "8888:8888"
+    environment:
+    - eureka.client.serviceUrl.defaultZone=http://naming-server:8761/eureka/
+    depends_on:
+    - "naming-server"
+    networks:
+    - position-network
+    
+  country-service:
+    container_name: country-service
+    build:
+      context: ./country-service
+      dockerfile: Dockerfile
+    image: subhash06582/country-service
+    ports: 
+    - "8801:8801"
+    environment:
+    - eureka.client.serviceUrl.defaultZone=http://naming-server:8761/eureka/
+    - spring.config.import=optional:configserver:http://config-server:8888
+    depends_on:
+    - "naming-server"
+    - "config-server"
+    networks:
+    - position-network
+    
+  league-service:
+    container_name: league-service
+    build:
+      context: ./league-service
+      dockerfile: Dockerfile
+    image: subhash06582/league-service
+    ports: 
+    - "8802:8802"
+    environment:
+    - eureka.client.serviceUrl.defaultZone=http://naming-server:8761/eureka/
+    - spring.config.import=optional:configserver:http://config-server:8888
+    depends_on:
+    - "naming-server"
+    - "config-server"
+    networks:
+    - position-network
+    
+  standing-service:
+    container_name: standing-service
+    build:
+      context: ./standing-service
+      dockerfile: Dockerfile
+    image: subhash06582/standing-service
+    ports: 
+    - "8803:8803"
+    environment:
+    - eureka.client.serviceUrl.defaultZone=http://naming-server:8761/eureka/
+    - spring.config.import=optional:configserver:http://config-server:8888
+    depends_on:
+    - "naming-server"
+    - "config-server"
+    networks:
+    - position-network
+  
+  position-service:
+    container_name: position-service
+    build:
+      context: ./position-service
+      dockerfile: Dockerfile
+    image: subhash06582/position-service
+    ports:
+    - "8080:8080"
+    environment:
+    - SPRING_PROFILES_ACTIVE=prod
+    - eureka.client.serviceUrl.defaultZone=http://naming-server:8761/eureka/
+    - spring.config.import=optional:configserver:http://config-server:8888
+    depends_on:
+    - "naming-server"
+    - "config-server"
+    - "country-service"
+    - "league-service"
+    - "standing-service"
+    networks:
+    - position-network
+    
+networks:
+  position-network:
+      
+    
+ # docker-compose build
+ # docker-compose up -d // Builds, (re)creates, starts, and attaches to containers for a service
+ # docker-compose down // Stops containers and removes containers, networks, volumes, and images created by up.
+ # docker-compose rm
+ # docker-compose ps
+ # docker-compose top
+ # docker-compose start
+ # docker-compose stop
+ # docker-compose logs <container name>
+ # docker rm $(docker ps -aq)

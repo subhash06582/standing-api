@@ -12,7 +12,12 @@ server:
   port: 8801
   servlet:
     context-path: /api
-    
+
+# app properties
+feign:
+  apifootball:
+    url: https://apiv2.apifootball.com/
+    apiKey: 9bb66184e0c8145384fd2cc0f7b914ada57b4e8fd2e4d6d586adcc27c257a978
     
 # k8s actuator probe
 management:

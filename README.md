@@ -74,4 +74,4 @@ The app has been dockerized. Docker images for individual microservices can be f
 ### More additions that could be done to the app
 - [ ] Implementing Spring Cloud Gateway to provide a simple, yet effective way to route to APIs and provide cross cutting concerns to them such as: security, monitoring/metrics, and resiliency.
 - [ ] Distributed Tracing with Spring Cloud Sleuth and Spring Cloud Zipkin
-- [ ] Implementing, Circuit Breaker, Rate Limiter, Retry using Resilience4j spring-boot API
+- [x] Implementing, Circuit Breaker, Retry using Resilience4j spring-boot API

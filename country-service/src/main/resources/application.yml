@@ -12,6 +12,15 @@ server:
   port: 8801
   servlet:
     context-path: /api
+    
+# resillience retry setup
+resilience4j:
+  retry:
+    instances:
+      countryService:
+        maxAttempts: 5
+        waitDuration: 1s
+        enableExponentialBackoff: true
 
 # app properties
 feign:
@@ -30,3 +39,10 @@ management:
       enabled: true
     readinessstate:
       enabled: true
+
+# logging level
+logging:
+  level:
+    ROOT: INFO
+    org.springframework.web: TRACE
+    com.sapient.country: DEBUG

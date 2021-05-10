@@ -6,6 +6,7 @@
 - It uses Declarative REST Client: Feign to call services.
 - Uses Eureka Service Registration and Discovery which enables client-side load-balancing and decouples service providers from consumers without the need for DNS.
 - Application configuration are stored and fetched from Spring Cloud Config server for externalized configuration in a distributed system.
+- Circuit Breaker and Retry implementation using Resilience4j lightweight fault tolerance library
 
 ## Architecture Diagram
 ![League_Position_Architecture_Diagram](League_Position_Architecture_Diagram.png)

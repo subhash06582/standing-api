@@ -13,6 +13,14 @@ server:
   servlet:
     context-path: /api
     
+# resillience circuitbreaker setup
+resilience4j:
+  circuitbreaker:
+    instances:
+      leagueService:
+        failureRateThreshold: 50
+        permittedNumberOfCallsInHalfOpenState: 3
+    
 # app properties
 feign:
   apifootball:

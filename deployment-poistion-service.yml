@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: position-service
+  name: position-service
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: position-service
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: position-service
+    spec:
+      containers:
+      - image: subhash06582/position-service:1.0.1
+        imagePullPolicy: IfNotPresent
+        name: position-service
+        envFrom:
+          - configMapRef:
+              name: position-service
+#        env:
+#          - name: COUNTRY_SERVICE_URI
+#            value: http://country-service
+       
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: position-service
+  name: position-service
+  namespace: default
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: position-service
+  sessionAffinity: None
+  type: LoadBalancer
+---
+apiVersion: v1
+data:
+  COUNTRY_SERVICE_URI: http://country-service
+kind: ConfigMap
+metadata:
+  name: position-service
+  namespace: default

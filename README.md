@@ -7,6 +7,7 @@
 - Uses Eureka Service Registration and Discovery which enables client-side load-balancing and decouples service providers from consumers without the need for DNS.
 - Application configuration are stored and fetched from Spring Cloud Config server for externalized configuration in a distributed system.
 - Circuit Breaker and Retry implementation using Resilience4j lightweight fault tolerance library
+- Disctributed tracing using Sleuth, Zipkin and RabbitMQ
 
 ## Architecture Diagram
 ![League_Position_Architecture_Diagram](League_Position_Architecture_Diagram.png)
@@ -48,6 +49,8 @@ The app has been dockerized. Docker images for individual microservices can be f
 | Netflix Eureka Naming Server | 8761 |
 | Spring cloud config Server | 8888 |
 | Position Service API | 8080 |
+| Zipkin | 9411 |
+| RAbbitMQ | 5672, 15672 |
 
 ### URLs
 
@@ -59,6 +62,8 @@ The app has been dockerized. Docker images for individual microservices can be f
 | Position Service API - Direct call | http://localhost:8080/api/position?country=England&league=Championship&team=Nottingham|
 | Spring cloud Config Server | http://localhost:8888/position-service/dev|
 | Eureka Naming Server | http://localhost:8761/|
+| Zipkin Tracing Server | http://localhost:9411/zipkin/|
+| RabbitMQ Msg Broker | http://localhost:15672/|
 
 
 ### Health check Probes
@@ -74,5 +79,6 @@ The app has been dockerized. Docker images for individual microservices can be f
 
 ### More additions that could be done to the app
 - [ ] Implementing Spring Cloud Gateway to provide a simple, yet effective way to route to APIs and provide cross cutting concerns to them such as: security, monitoring/metrics, and resiliency.
-- [ ] Distributed Tracing with Spring Cloud Sleuth and Spring Cloud Zipkin
+- [x] Distributed Tracing with Spring Cloud Sleuth and Spring Cloud Zipkin
+      ![Zipkin-Distributed-Tracing](Zipkin-Distributed-Tracing.png)
 - [x] Implementing, Circuit Breaker, Retry using Resilience4j spring-boot API

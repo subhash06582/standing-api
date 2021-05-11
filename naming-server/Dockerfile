@@ -6,7 +6,7 @@ USER root
 
 WORKDIR /usr/app
 
-COPY target/naming-server-1.0.0.jar /usr/app
+COPY target/naming-server-1.0.1.jar /usr/app
 
 EXPOSE 8761
 
@@ -14,7 +14,7 @@ ARG PROFILE=dev
 
 ENV spring.profiles.active=$PROFILE
 
-ENTRYPOINT [ "java", "-jar", "naming-server-1.0.0.jar" ]
+ENTRYPOINT [ "java", "-jar", "naming-server-1.0.1.jar" ]
 
 # docker build -t subhash06582/naming-server .
 # docker build -t subhash06582/naming-server . --build-arg PROFILE=prod

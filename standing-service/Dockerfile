@@ -6,7 +6,7 @@ USER root
 
 WORKDIR /usr/app
 
-COPY target/standing-service-1.0.0.jar /usr/app
+COPY target/standing-service-1.0.1.jar /usr/app
 
 EXPOSE 8803
 
@@ -14,7 +14,7 @@ ARG PROFILE=dev
 
 ENV spring.profiles.active=$PROFILE
 
-ENTRYPOINT [ "java", "-jar", "standing-service-1.0.0.jar" ]
+ENTRYPOINT [ "java", "-jar", "standing-service-1.0.1.jar" ]
 
 # docker build -t subhash06582/standing-service .
 # docker build -t subhash06582/standing-service . --build-arg PROFILE=prod

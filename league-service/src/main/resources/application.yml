@@ -1,4 +1,5 @@
 # app name & active profile
+# distributed tracing : zipkin & sleuth sampling
 spring:
   profiles:
     active: dev
@@ -6,6 +7,11 @@ spring:
     name: league-service
   config:
     import: optional:configserver:http://localhost:8888
+  zipkin:
+    baseUrl: http://localhost:9411/
+  sleuth:
+    sampler:
+      probability: 1.0
     
 # port & context path   
 server:
@@ -38,3 +44,9 @@ management:
       enabled: true
     readinessstate:
       enabled: true
+# logging level
+logging:
+  level:
+    ROOT: INFO
+    org.springframework.web: TRACE
+    com.sapient.league: DEBUG

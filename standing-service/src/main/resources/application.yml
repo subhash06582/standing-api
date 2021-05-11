@@ -1,4 +1,5 @@
 # app name & active profile
+# distributed tracing : zipkin & sleuth sampling
 spring:
   profiles:
     active: dev
@@ -6,12 +7,26 @@ spring:
     name: standing-service
   config:
     import: optional:configserver:http://localhost:8888
+  zipkin:
+    baseUrl: http://localhost:9411/
+  sleuth:
+    sampler:
+      probability: 1.0
     
 # port & context path   
 server:
   port: 8803
   servlet:
     context-path: /api
+    
+# resillience retry setup
+resilience4j:
+  retry:
+    instances:
+      standingService:
+        maxAttempts: 5
+        waitDuration: 1s
+        enableExponentialBackoff: true
     
 # app properties
 feign:
@@ -30,3 +45,10 @@ management:
       enabled: true
     readinessstate:
       enabled: true
+
+# logging level
+logging:
+  level:
+    ROOT: INFO
+    org.springframework.web: TRACE
+    com.sapient.standing: DEBUG

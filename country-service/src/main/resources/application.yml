@@ -1,4 +1,5 @@
 # app name & active profile
+# distributed tracing : zipkin & sleuth sampling
 spring:
   profiles:
     active: dev
@@ -6,6 +7,11 @@ spring:
     name: country-service
   config:
     import: optional:configserver:http://localhost:8888
+  zipkin:
+    baseUrl: http://localhost:9411/
+  sleuth:
+    sampler:
+      probability: 1.0
     
 # port & context path   
 server:

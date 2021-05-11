@@ -11,7 +11,7 @@ services:
     - "8761:8761"
     environment:
     - eureka.client.serviceUrl.defaultZone=http://naming-server:8761/eureka/
-    - spring.config.import=optional:configserver:http://config-server:8888
+    - SPRING_CONFIG_IMPORT=optional:configserver:http://config-server:8888/
     networks:
     - position-network
     
@@ -41,10 +41,15 @@ services:
     - "8801:8801"
     environment:
     - eureka.client.serviceUrl.defaultZone=http://naming-server:8761/eureka/
-    - spring.config.import=optional:configserver:http://config-server:8888
+    - SPRING_ZIPKIN_BASEURL=http://zipkin-server:9411/
+    - SPRING_CONFIG_IMPORT=optional:configserver:http://config-server:8888/
+    - RABBIT_URI=amqp://guest:guest@rabbitmq:5672
+    - SPRING_RABBITMQ_HOST=rabbitmq
+    - SPRING_ZIPKIN_SENDER_TYPE=rabbit
     depends_on:
     - "naming-server"
     - "config-server"
+    - "rabbitmq"
     networks:
     - position-network
     
@@ -58,10 +63,15 @@ services:
     - "8802:8802"
     environment:
     - eureka.client.serviceUrl.defaultZone=http://naming-server:8761/eureka/
-    - spring.config.import=optional:configserver:http://config-server:8888
+    - SPRING_ZIPKIN_BASEURL=http://zipkin-server:9411/
+    - SPRING_CONFIG_IMPORT=optional:configserver:http://config-server:8888/
+    - RABBIT_URI=amqp://guest:guest@rabbitmq:5672
+    - SPRING_RABBITMQ_HOST=rabbitmq
+    - SPRING_ZIPKIN_SENDER_TYPE=rabbit
     depends_on:
     - "naming-server"
     - "config-server"
+    - "rabbitmq"
     networks:
     - position-network
     
@@ -75,10 +85,15 @@ services:
     - "8803:8803"
     environment:
     - eureka.client.serviceUrl.defaultZone=http://naming-server:8761/eureka/
-    - spring.config.import=optional:configserver:http://config-server:8888
+    - SPRING_ZIPKIN_BASEURL=http://zipkin-server:9411/
+    - SPRING_CONFIG_IMPORT=optional:configserver:http://config-server:8888/
+    - RABBIT_URI=amqp://guest:guest@rabbitmq:5672
+    - SPRING_RABBITMQ_HOST=rabbitmq
+    - SPRING_ZIPKIN_SENDER_TYPE=rabbit
     depends_on:
     - "naming-server"
     - "config-server"
+    - "rabbitmq"
     networks:
     - position-network
   
@@ -91,18 +106,45 @@ services:
     ports:
     - "8080:8080"
     environment:
-    - SPRING_PROFILES_ACTIVE=prod
     - eureka.client.serviceUrl.defaultZone=http://naming-server:8761/eureka/
-    - spring.config.import=optional:configserver:http://config-server:8888
+    - SPRING_PROFILES_ACTIVE=prod
+    - SPRING_ZIPKIN_BASEURL=http://zipkin-server:9411/
+    - SPRING_CONFIG_IMPORT=optional:configserver:http://config-server:8888/
+    - RABBIT_URI=amqp://guest:guest@rabbitmq:5672
+    - SPRING_RABBITMQ_HOST=rabbitmq
+    - SPRING_ZIPKIN_SENDER_TYPE=rabbit
     depends_on:
     - "naming-server"
     - "config-server"
     - "country-service"
     - "league-service"
     - "standing-service"
+    - "rabbitmq"
     networks:
     - position-network
     
+  zipkin-server:
+    container_name: zipkin-service
+    image: openzipkin/zipkin:2.23
+    ports:
+      - "9411:9411"
+    environment:
+    - RABBIT_URI=amqp://guest:guest@rabbitmq:5672
+    depends_on:
+    - "rabbitmq"
+    networks:
+      - position-network
+    restart: always #Restart if there is a problem starting up
+    
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:3.5.3-management
+    mem_limit: 300m
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - position-network   
 networks:
   position-network:
       
@@ -117,3 +159,4 @@ networks:
  # docker-compose stop
  # docker-compose logs <container name>
  # docker rm $(docker ps -aq)
+ # docker run -p 9411:9411 openzipkin/zipkin:2.23

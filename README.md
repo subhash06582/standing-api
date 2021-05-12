@@ -77,6 +77,9 @@ The app has been dockerized. Docker images for individual microservices can be f
 | Config Server | http://localhost:8888/actuator/health/liveness| http://localhost:8888/actuator/health/readiness |
 | Naming Server | http://localhost:8761/actuator/health/liveness| http://localhost:8761/actuator/health/readiness |
 
+## Eureka Service discovery
+![Eureka-service-discovery](Eureka-service-discovery.png)
+
 ### More additions that could be done to the app
 - [ ] Implementing Spring Cloud Gateway to provide a simple, yet effective way to route to APIs and provide cross cutting concerns to them such as: security, monitoring/metrics, and resiliency.
 - [x] Distributed Tracing with Spring Cloud Sleuth and Spring Cloud Zipkin

@@ -1,0 +1,42 @@
+# app name 
+# zipkin & sleuth
+# api gateway setup
+spring:
+  application:
+    name: api-gateway
+  config:
+    import: optional:configserver:http://localhost:8888
+  zipkin:
+    baseUrl: http://localhost:9411/
+  sleuth:
+    sampler:
+      probability: 1.0
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      
+# port & context path   
+server:
+  port: 8765
+    
+# k8s actuator probe
+management:
+  endpoint:
+    health:
+      probes:
+        enabled: true
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
+
+# logging level
+logging:
+  level:
+    ROOT: INFO
+    org.springframework.web: TRACE
+    com.sapient.gateway: INFO

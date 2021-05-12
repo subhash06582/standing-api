@@ -11,6 +11,8 @@ services:
     - "8761:8761"
     environment:
     - eureka.client.serviceUrl.defaultZone=http://naming-server:8761/eureka/
+    - eureka.server.waitTimeInMsWhenSyncEmpty=30000
+    - eureka.server.peer-node-read-timeout-ms=30000
     - SPRING_CONFIG_IMPORT=optional:configserver:http://config-server:8888/
     networks:
     - position-network
@@ -28,6 +30,28 @@ services:
     - eureka.client.serviceUrl.defaultZone=http://naming-server:8761/eureka/
     depends_on:
     - "naming-server"
+    networks:
+    - position-network
+    
+  api-gateway:
+    container_name: api-gateway
+    build:
+      context: ./api-gateway
+      dockerfile: Dockerfile
+    image: subhash06582/api-gateway
+    ports:
+      - "8765:8765"
+    environment:
+    - eureka.client.serviceUrl.defaultZone=http://naming-server:8761/eureka/
+    - SPRING_ZIPKIN_BASEURL=http://zipkin-server:9411/
+    - SPRING_CONFIG_IMPORT=optional:configserver:http://config-server:8888/
+    - RABBIT_URI=amqp://guest:guest@rabbitmq:5672
+    - SPRING_RABBITMQ_HOST=rabbitmq
+    - SPRING_ZIPKIN_SENDER_TYPE=rabbit
+    depends_on:
+    - "naming-server"
+    - "config-server"
+    - "rabbitmq"
     networks:
     - position-network
     
@@ -124,7 +148,7 @@ services:
     - position-network
     
   zipkin-server:
-    container_name: zipkin-service
+    container_name: zipkin-server
     image: openzipkin/zipkin:2.23
     ports:
       - "9411:9411"
